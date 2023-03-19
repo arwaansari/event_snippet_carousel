@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="event_snippet.event_template1">
+    <div class="container">
+        <section class="s_carousel_wrapper" data-vxml="001">
+            <div t-attf-id="myCarousel{{uniq}}"
+                 class="s_carousel s_carousel_default carousel slide"
+                 data-bs-interval="5000">
+                <center>
+                <br/>
+                    <h1>EVENTS</h1>
+                </center>
+                <div id="slideshow sample" class="carousel slide"
+                     data-bs-ride="carousel" data-bs-interval="5000"
+                     style="margin:70px;">
+                    <div class="carousel-inner">
+                        <t t-foreach="result" t-as="event">
+                            <div t-attf-class="carousel-item #{event.set_active ? 'active' :''}">
+                                <div class="row">
+                                    <t t-foreach="event" t-as="res">
+                                        <div class="card col-md-3"
+                                             style="width: 18rem;">
+                                            <a t-attr-href="/events/event_details?event_id=#{res[1]}" method="post"
+                                                      enctype="multipart/form-data"
+                                                      class="o_mark_required">
+                            <img class="card-img-top"
+                                 t-attf-src="/web/image/event.booking/{{res[1]}}/image"
+                                 alt="Card image cap" style="margin-top:10px;"/>
+                                            <div class="card-body">
+
+                                                <form action="/events/event_details"
+                                                      method="post"
+                                                      enctype="multipart/form-data"
+                                                      class="o_mark_required">
+
+                                                <input type="hidden"
+                                                       name="event_id"
+                                                       t-att-value="res[1]"/>
+                                                    <center><h5 class="card-title">
+                                                    <t t-esc="res[0]"/>
+                                                </h5></center>
+<!--                                                    <center>-->
+<!--                                                    <button name="submit"-->
+<!--                                                            type="submit"-->
+<!--                                                            style="background-color:#71639e;border-radius:5px;margin-top: 10px;">-->
+<!--                                                                    Details-->
+<!--                                                                </button>-->
+<!--                                                    </center>-->
+                                                </form>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <a class="carousel-control-prev o_not_editable"
+                   contenteditable="false"
+                   t-attr-href="#myCarousel{{uniq}}" data-bs-slide="prev"
+                   role="img" aria-label="Previous"
+                   title="Previous" style="margin-left:-18px;">
+                        <span class="carousel-control-prev-icon"/>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next o_not_editable"
+                   contenteditable="false"
+                   t-attr-href="#myCarousel{{uniq}}" data-bs-slide="next"
+                   role="img" aria-label="Next" title="Next" style="margin-right:10px;">
+                    <span class="carousel-control-next-icon"/>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    </t>
+</templates>
